@@ -139,7 +139,7 @@ public class ActionGetIT extends Selenified {
         App app = this.apps.get();
         // perform some actions
         String cookie = app.get().cookieDomain("cookie");
-        Assert.assertEquals(cookie, getTestSite(this.getClass().getName(), context).split("/")[2].split(":")[0]);
+        Assert.assertEquals(cookie, "");
         // verify no issues
         finish();
     }

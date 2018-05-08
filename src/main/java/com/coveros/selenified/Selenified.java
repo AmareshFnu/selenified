@@ -304,6 +304,15 @@ public class Selenified {
         String act = "Opening new browser and loading up starting app";
         String expected = startingPage + url + "</i> will successfully load";
 
+        // check url for locally hosted file and browser
+        if (app.getBrowser() == Browser.HTMLUNIT && url.startsWith("file:///")) {
+            url = "file:/" + url.substring(8);
+        }
+        if (app.getBrowser() != Browser.HTMLUNIT && url.startsWith("file:/") && !url.startsWith("file:///")) {
+            url = "file:///" + url.substring(6);
+        }
+
+        //load up our page
         if (app != null) {
             try {
                 app.getDriver().get(url);
@@ -320,6 +329,10 @@ public class Selenified {
                 file.recordAction(act, expected, startingPage + url + "</i> did not load successfully", Result.FAILURE);
                 file.addError();
             }
+        } else {
+            file.recordAction(act, expected, "Unable to load initial starting page, as test didn't start up properly",
+                    Result.FAILURE);
+            file.addError();
         }
     }
 

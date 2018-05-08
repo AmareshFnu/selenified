@@ -3,16 +3,9 @@ package integration;
 import com.coveros.selenified.Locator;
 import com.coveros.selenified.Selenified;
 import com.coveros.selenified.application.App;
-import org.openqa.selenium.Cookie;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.TimeZone;
 
 public class ActionGoIT extends Selenified {
 
@@ -145,100 +138,6 @@ public class ActionGoIT extends Selenified {
         // perform some actions
         app.killDriver();
         app.refreshHard();
-        // verify 1 issue
-        finish(1);
-    }
-
-    @Test(groups = {"integration", "actions", "go"}, description = "An integration test to check the setCookie method")
-    public void setCookieTest(ITestContext context) throws IOException, ParseException {
-        String dateval = "2011-11-17T09:52:13";
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        df.setTimeZone(TimeZone.getTimeZone("UTC"));
-        Cookie cookie = new Cookie("new_cookie", "this_cookie",
-                getTestSite(this.getClass().getName(), context).split("/")[2].split(":")[0], "/", df.parse(dateval));
-        // use this object to manipulate the app
-        App app = this.apps.get();
-        // perform some actions
-        app.setCookie(cookie);
-        // verify no issues
-        finish();
-    }
-
-    @Test(groups = {"integration", "actions", "go"}, description = "An integration test to check the setCookie method")
-    public void setCookieErrorTest(ITestContext context) throws IOException, ParseException {
-        String dateval = "2011-11-17T09:52:13";
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        df.setTimeZone(TimeZone.getTimeZone("UTC"));
-        Cookie cookie = new Cookie("new_cookie", "this_cookie",
-                getTestSite(this.getClass().getName(), context).split("/")[2].split(":")[0], "/", df.parse(dateval));
-        // use this object to manipulate the app
-        App app = this.apps.get();
-        // perform some actions
-        app.killDriver();
-        app.setCookie(cookie);
-        // verify 1 issue
-        finish(1);
-    }
-
-    @Test(groups = {"integration", "actions", "go"},
-            description = "An integration test to check the deleteCookie method")
-    public void deleteCookieTest() {
-        // use this object to manipulate the app
-        App app = this.apps.get();
-        // perform some actions
-        app.deleteCookie("cookie");
-        Cookie cookie = app.get().cookie("cookie");
-        org.testng.Assert.assertNull(cookie);
-        // verify no issues
-        finish();
-    }
-
-    @Test(groups = {"integration", "actions", "go"},
-            description = "An integration test to check the deleteCookie method")
-    public void deleteNonExistentCookieTest() {
-        // use this object to manipulate the app
-        App app = this.apps.get();
-        // perform some actions
-        app.deleteCookie("new_cookie");
-        // verify 1 issue
-        finish(1);
-    }
-
-    @Test(groups = {"integration", "actions", "go"},
-            description = "An integration test to check the deleteAllCookies method")
-    public void deleteAllCookiesTest() {
-        // use this object to manipulate the app
-        App app = this.apps.get();
-        // perform some actions
-        app.deleteAllCookies();
-        Cookie cookie = app.get().cookie("cookie");
-        org.testng.Assert.assertNull(cookie);
-        // verify no issues
-        finish();
-    }
-
-    @Test(groups = {"integration", "actions", "go"},
-            description = "An integration test to check the deleteAllCookies method")
-    public void deleteAllCookiesTwiceTest() {
-        // use this object to manipulate the app
-        App app = this.apps.get();
-        // perform some actions
-        app.deleteAllCookies();
-        app.deleteAllCookies();
-        Cookie cookie = app.get().cookie("cookie");
-        org.testng.Assert.assertNull(cookie);
-        // verify no issues
-        finish();
-    }
-
-    @Test(groups = {"integration", "actions", "go"},
-            description = "An integration test to check the deleteAllCookies method")
-    public void deleteAllCookiesErrorTest() {
-        // use this object to manipulate the app
-        App app = this.apps.get();
-        // perform some actions
-        app.killDriver();
-        app.deleteAllCookies();
         // verify 1 issue
         finish(1);
     }

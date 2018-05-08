@@ -5,6 +5,7 @@ import com.coveros.selenified.Locator;
 import com.coveros.selenified.Selenified;
 import com.coveros.selenified.application.App;
 import com.coveros.selenified.exceptions.InvalidBrowserException;
+import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestContext;
@@ -1210,8 +1211,11 @@ public class ActionDoIT extends Selenified {
         App app = new App(Browser.FIREFOX, new DesiredCapabilities(), null);
         System.setProperty("hubAddress", "LOCAL");
         // perform some actions
-        app.takeScreenshot("somefile");
+        File screenshot = new File("takeScreenshotFirefoxLocalTest");
+        app.takeScreenshot("takeScreenshotFirefoxLocalTest");
         app.killDriver();
+        Assert.assertTrue(screenshot.exists());
+        screenshot.delete();
         // verify no issues
         finish();
     }
@@ -1223,8 +1227,11 @@ public class ActionDoIT extends Selenified {
         App app = new App(Browser.FIREFOX, new DesiredCapabilities(), null);
         System.setProperty("hubAddress", "HUB");
         // perform some actions
-        app.takeScreenshot("somefile");
+        File screenshot = new File("takeScreenshotFirefoxHubTest");
+        app.takeScreenshot("takeScreenshotFirefoxHubTest");
         app.killDriver();
+        Assert.assertTrue(screenshot.exists());
+        screenshot.delete();
         // verify no issues
         finish();
     }
@@ -1235,8 +1242,11 @@ public class ActionDoIT extends Selenified {
         // use this object to manipulate the app
         App app = new App(Browser.HTMLUNIT, new DesiredCapabilities(), null);
         // perform some actions
+        File screenshot = new File("takeScreenshotHtmlUnitTest");
         app.takeScreenshot("somefile");
         app.killDriver();
+        Assert.assertTrue(screenshot.exists());
+        screenshot.delete();
         // verify no issues
         finish();
     }

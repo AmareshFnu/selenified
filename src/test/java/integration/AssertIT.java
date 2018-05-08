@@ -348,7 +348,8 @@ public class AssertIT extends Selenified {
         finish(1);
     }
 
-    @Test(groups = {"integration", "asserts"}, description = "An integration test to check the checkCookie method")
+    @Test(groups = {"integration", "asserts", "cookie"},
+            description = "An integration test to check the checkCookie " + "method")
     public void checkCookieTest() {
         // use this object to manipulate the app
         App app = this.apps.get();
@@ -358,7 +359,7 @@ public class AssertIT extends Selenified {
         finish();
     }
 
-    @Test(groups = {"integration", "asserts"},
+    @Test(groups = {"integration", "asserts", "cookie"},
             description = "An integration negative test to check the checkCookie method")
     public void negativeCheckCookieTest() {
         // use this object to manipulate the app
@@ -369,7 +370,7 @@ public class AssertIT extends Selenified {
         finish(1);
     }
 
-    @Test(groups = {"integration", "asserts"},
+    @Test(groups = {"integration", "asserts", "cookie"},
             description = "An integration negative test to check the checkCookie method")
     public void negativeCheckCookieWrongNameTest() {
         // use this object to manipulate the app
@@ -380,7 +381,7 @@ public class AssertIT extends Selenified {
         finish(1);
     }
 
-    @Test(groups = {"integration", "asserts"},
+    @Test(groups = {"integration", "asserts", "cookie"},
             description = "An integration test to check the checkCookieNotPresent method")
     public void checkCookieNotPresentTest() {
         // use this object to manipulate the app
@@ -391,7 +392,7 @@ public class AssertIT extends Selenified {
         finish();
     }
 
-    @Test(groups = {"integration", "asserts"},
+    @Test(groups = {"integration", "asserts", "cookie"},
             description = "An integration negative test to check the checkCookieNotPresent method")
     public void negativeCheckCookieNotPresentTest() {
         // use this object to manipulate the app
@@ -402,7 +403,7 @@ public class AssertIT extends Selenified {
         finish(1);
     }
 
-    @Test(groups = {"integration", "asserts"},
+    @Test(groups = {"integration", "asserts", "cookie"},
             description = "An integration test to check the checkCookiePresent method")
     public void checkCookiePresentTest() {
         // use this object to manipulate the app
@@ -413,7 +414,7 @@ public class AssertIT extends Selenified {
         finish();
     }
 
-    @Test(groups = {"integration", "asserts"},
+    @Test(groups = {"integration", "asserts", "cookie"},
             description = "An integration negative test to check the checkCookiePresent method")
     public void negativeCheckCookiePresentTest() {
         // use this object to manipulate the app
