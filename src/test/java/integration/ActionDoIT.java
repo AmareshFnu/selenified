@@ -15,6 +15,8 @@ import org.testng.annotations.Test;
 import java.io.File;
 import java.net.MalformedURLException;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 public class ActionDoIT extends Selenified {
 
     @BeforeClass(alwaysRun = true)
@@ -1210,8 +1212,11 @@ public class ActionDoIT extends Selenified {
         App app = new App(Browser.FIREFOX, new DesiredCapabilities(), null);
         System.setProperty("hubAddress", "LOCAL");
         // perform some actions
-        app.takeScreenshot("somefile");
+        File screenshot = new File("takeScreenshotFirefoxLocalTest");
+        app.takeScreenshot("takeScreenshotFirefoxLocalTest");
         app.killDriver();
+        assertTrue(screenshot.exists());
+        screenshot.delete();
         // verify no issues
         finish();
     }
@@ -1223,8 +1228,11 @@ public class ActionDoIT extends Selenified {
         App app = new App(Browser.FIREFOX, new DesiredCapabilities(), null);
         System.setProperty("hubAddress", "HUB");
         // perform some actions
-        app.takeScreenshot("somefile");
+        File screenshot = new File("takeScreenshotFirefoxHubTest");
+        app.takeScreenshot("takeScreenshotFirefoxHubTest");
         app.killDriver();
+        assertTrue(screenshot.exists());
+        screenshot.delete();
         // verify no issues
         finish();
     }
@@ -1235,8 +1243,11 @@ public class ActionDoIT extends Selenified {
         // use this object to manipulate the app
         App app = new App(Browser.HTMLUNIT, new DesiredCapabilities(), null);
         // perform some actions
+        File screenshot = new File("takeScreenshotHtmlUnitTest");
         app.takeScreenshot("somefile");
         app.killDriver();
+        assertTrue(screenshot.exists());
+        screenshot.delete();
         // verify no issues
         finish();
     }

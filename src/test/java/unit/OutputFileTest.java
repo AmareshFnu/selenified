@@ -11,9 +11,7 @@ import com.google.common.io.Files;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,6 +23,14 @@ public class OutputFileTest {
     private OutputFile outputFile;
     private File directory;
     private File file;
+    private String packageResults;
+
+    @BeforeClass
+    public void storePackage() {
+        if (System.getProperty("packageResults") != null) {
+            packageResults = System.getProperty("packageResults");
+        }
+    }
 
     @BeforeMethod
     public void createFile() {
@@ -37,6 +43,14 @@ public class OutputFileTest {
     public void deleteFile() {
         file.delete();
         directory.delete();
+        System.clearProperty("packageResults");
+    }
+
+    @AfterClass
+    public void restorePackage() {
+        if (packageResults != null) {
+            System.setProperty("packageResults", packageResults);
+        }
     }
 
     @Test
